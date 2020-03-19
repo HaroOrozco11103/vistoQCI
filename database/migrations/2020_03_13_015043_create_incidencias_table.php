@@ -14,8 +14,18 @@ class CreateIncidenciasTable extends Migration
     public function up()
     {
         Schema::create('incidencias', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->boolean('tipo'); //TRUE = encontrado / FALSE = perdido
+            $table->boolean('estado')->default(false); //TRUE = regresado / FALSE = ausente
+            $table->Date('fechaIncidente');
+            $table->Date('fechaResuelto')->nullable();
+            $table->string('edificio');
+            $table->string('aula')->nullable();
+            $table->string('ubicacionActual');
+            $table->string('nombre')->nullable();
+            $table->string('contacto')->nullable();
+            $table->unsignedInteger('objeto_id');
+            $table->foreign('objeto_id')->references('id')->on('objetos')->onDelete('cascade');
         });
     }
 

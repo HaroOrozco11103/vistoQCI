@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function ()
+{
+    return view('inicio');
+})->name('inicio');
+
+Route::get('/buscando', function ()
+{
+    return view('buscando');
+})->name('buscando');
+
+Route::resource('incidencias', 'IncidenciaController');
+Route::get('extraviados', 'IncidenciaController@indexEncontrados')
+->name('incidencias.indexEncontrados');
+Route::get('Reportar', 'IncidenciaController@createReporte')
+->name('incidencias.createReporte');

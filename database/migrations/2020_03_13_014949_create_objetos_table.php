@@ -14,8 +14,10 @@ class CreateObjetosTable extends Migration
     public function up()
     {
         Schema::create('objetos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('color')->nullable();
+            $table->boolean('tipo'); //TRUE = encontrado / FALSE = perdido
         });
     }
 
